@@ -1,6 +1,41 @@
+import { useState } from "react";
+import getAPI from "../utils/getAPI";
+import LocalStorage  from "../utils/localStorage"
+import { useHistory } from 'react-router-dom';
+
 export default function Login() {
+  const [apiKey, setApiKey] = useState("854a097a84bf6ba19ab5996a760c58f3");
+  const [loginError, setLoginError] = useState(false);
+  const history = useHistory();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await getAPI('status', handleFetchResult, apiKey);
+  }
+
+  const handleFetchResult = (apiResult) => {
+    if (apiResult.errors.token) {
+      setLoginError(true);
+      return console.log(apiResult.errors.token);
+    }
+    setLoginError(false);
+    LocalStorage.setLocalStorage('apiKey', apiResult);
+    history.push('/main');
+  }
+
   return (
-    <div>Login</div>
+    <form onSubmit={ (e) => handleSubmit(e) }>
+      <input 
+        type="text"
+        value={ apiKey }
+        onChange={ ({ target: { value }}) => setApiKey(value)}
+      />
+      <button type="submit">Submit</button>
+      {
+        loginError && <p>API KEY inválida</p>
+      }
+
+    </form>
   )
 }
 
