@@ -2,9 +2,10 @@ import { useState } from "react";
 import getAPI from "../utils/getAPI";
 import LocalStorage  from "../utils/localStorage"
 import { useHistory } from 'react-router-dom';
-
+// 854a097a84bf6ba19ab5996a760c58f3
+// a4e214a8a2e0bc85a3db6dfd5aae1372
 export default function Login() {
-  const [apiKey, setApiKey] = useState("854a097a84bf6ba19ab5996a760c58f3");
+  const [apiKey, setApiKey] = useState("");
   const [loginError, setLoginError] = useState(false);
   const history = useHistory();
 
@@ -19,7 +20,8 @@ export default function Login() {
       return console.log(apiResult.errors.token);
     }
     setLoginError(false);
-    LocalStorage.setLocalStorage('apiKey', apiResult);
+    LocalStorage.setLocalStorage('apiReturn', apiResult);
+    LocalStorage.setLocalStorage('apiKey', apiKey);
     history.push('/main');
   }
 
