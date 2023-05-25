@@ -1,30 +1,16 @@
+import Table from "./Table";
+import PropTypes from 'prop-types';
+
 export default function playersInfo({ players }) {
+  const headers = ['Nome', 'Idade', 'Nacionalidade'];
+  const playersInfo = players.map(({ player: { name, age, nationality } }) => ({ name, age, nationality }))
   return (
     <div>
-      <table>
-        <thead>
-          <tr>
-            <th>Nome</th>
-            <th>Idade</th>
-            <th>Nacionalidade</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            players.map((player, index) => (
-              <tr key={ `${index} - ${player.name}` }>
-                {
-                  Object.values(player).map((value, ind) => (
-                    <td key={ `${ind} - ${value}` }>
-                      { value }
-                    </td>
-                  ))
-                }
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <Table array={ playersInfo } headers={ headers }/>
     </div>
   )
 }
+
+playersInfo.propTypes = {
+  players: PropTypes.array.isRequired,
+};

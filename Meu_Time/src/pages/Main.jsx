@@ -4,9 +4,12 @@ import { useHistory } from 'react-router-dom';
 import getAPI from "../utils/getAPI";
 import SelectOptions from "../components/SelectOptions";
 import Information from "../components/Information";
+import Header from "../components/Header";
+import "../Css/main.css"
 
 export default function Main() {
   const history = useHistory();
+  
   const [apiKey, setApiKey] = useState('');
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState('Brazil');
@@ -53,7 +56,8 @@ export default function Main() {
 
 
   return (
-    <>
+    <div className="MainDiv">
+      <Header />
       <form>
         <SelectOptions
           array={ countries.map((c) => ({ name: c.name, valueToSave: c.name })) }
@@ -83,7 +87,7 @@ export default function Main() {
           text="Times:"
         />
       </form>
-      
+
       { 
         selectedTeam && (
           <Information
@@ -93,6 +97,6 @@ export default function Main() {
             apiKey={ apiKey }
           />)
       }
-    </>
+    </div>
   )
 }

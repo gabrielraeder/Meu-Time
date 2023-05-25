@@ -11,6 +11,7 @@ export default function SelectOptions({ array, handleChange, fieldName, text }) 
             id={ `${fieldName}_id` }
             onChange={ ({ target: { value } }) => handleChange(value) }
           >
+            <option value="" disabled selected>-- Selecione --</option>
             {
               array.length && array.map(({ name, valueToSave }) => (
                 <option key={ name } value={ valueToSave }>{ name }</option>
