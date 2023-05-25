@@ -65,7 +65,7 @@ export default function Information({ team, league, season, apiKey }) {
   // }, [team]);
 
   return (
-    <div>
+    <div className="information_section">
       <button id="playersBtn" onClick={getPlayers}>
         Jogadores
       </button>

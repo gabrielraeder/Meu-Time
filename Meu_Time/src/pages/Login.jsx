@@ -31,7 +31,7 @@ export default function Login() {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form className="login_form" onSubmit={(e) => handleSubmit(e)}>
       <input
         type="text"
         value={apiKey}

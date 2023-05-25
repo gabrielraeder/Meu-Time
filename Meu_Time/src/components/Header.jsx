@@ -20,12 +20,14 @@ export default function Header() {
   };
 
   return (
-    <div>
+    <div className="header_div">
       <h1>Football Teams</h1>
-      <h4>{user}</h4>
-      <button type="button" onClick={logout}>
-        Logout
-      </button>
+      <div className="header_child">
+        <h4>{user}</h4>
+        <button type="button" onClick={logout}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
