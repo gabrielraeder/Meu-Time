@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "react-scripts start",
+    "start": "vite",
     "start:build": "PORT=3000 ./node_modules/.bin/serve -s build",
     "dev": "vite",
     "build": "vite build && react-scripts build",
