@@ -7,28 +7,24 @@ export default function SelectOptions({
   text,
 }) {
   return (
-    <div>
-      <br />
-      <label htmlFor={fieldName}>
-        {text}
-        <select
-          name={fieldName}
-          id={`${fieldName}_id`}
-          onChange={({ target: { value } }) => handleChange(value)}
-        >
-          <option value="" disabled selected>
-            -- Selecione --
-          </option>
-          {array.length &&
-            array.map(({ name, valueToSave }) => (
-              <option key={name} value={valueToSave}>
-                {name}
-              </option>
-            ))}
-        </select>
-      </label>
-      <br />
-    </div>
+    <label htmlFor={fieldName}>
+      {text}
+      <select
+        name={fieldName}
+        id={`${fieldName}_id`}
+        onChange={({ target: { value } }) => handleChange(value)}
+      >
+        <option value="" disabled selected>
+          -- Selecione --
+        </option>
+        {array.length &&
+          array.map(({ name, valueToSave }) => (
+            <option key={name} value={valueToSave}>
+              {name}
+            </option>
+          ))}
+      </select>
+    </label>
   );
 }
 

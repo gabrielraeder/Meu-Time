@@ -5,8 +5,6 @@ import getAPI from "../utils/getAPI";
 import SelectOptions from "../components/SelectOptions";
 import Information from "../components/Information";
 import Header from "../components/Header";
-import "../Css/main.css";
-import { teamsMock } from "./mock";
 
 export default function Main() {
   const history = useHistory();
@@ -18,8 +16,8 @@ export default function Main() {
   const [selectedSeason, setSelectedSeasons] = useState("");
   const [leagues, setLeagues] = useState([]);
   const [selectedLeague, setSelectedLeague] = useState("");
-  const [teams, setTeams] = useState();
-  const [selectedTeam, setSelectedTeam] = useState("");
+  const [teams, setTeams] = useState([]);
+  const [selectedTeam, setSelectedTeam] = useState("a");
 
   useEffect(() => {
     const storedKey = LocalStorage.getItem("apiKey");
@@ -36,18 +34,6 @@ export default function Main() {
     getCountries();
     setApiKey(storedKey);
   }, []);
-
-  // useEffect(() => {
-  //   const getCountries = async () => {
-  //     await getAPI("/countries", (data) => setCountries(data.response), apiKey);
-  //     // await getAPI(
-  //     //   `/leagues/seasons`,
-  //     //   (data) => setSeasons(data.response),
-  //     //   apiKey
-  //     // );
-  //   };
-  //   if (apiKey) getCountries();
-  // }, [apiKey]);
 
   useEffect(() => {
     const getLeagues = async () => {
@@ -80,7 +66,7 @@ export default function Main() {
   return (
     <div className="MainDiv">
       <Header />
-      <form>
+      <form className="form_class">
         <SelectOptions
           array={countries.map((c) => ({ name: c.name, valueToSave: c.name }))}
           handleChange={setSelectedCountry}

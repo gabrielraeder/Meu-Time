@@ -13,7 +13,7 @@ import {
   informationMock,
 } from "./mocks/main.mocks";
 
-describe.only("Testa a tela de Main", () => {
+describe("Testa a tela de Main", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     LocalStorage.setLocalStorage("apiKey", apiKeyMock);

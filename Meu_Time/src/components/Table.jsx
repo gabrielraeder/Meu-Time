@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export default function Table({ array, headers }) {
   return (
-    <table>
+    <table className="table">
       <thead>
         <tr>
           {headers.map((header) => (
