@@ -1,13 +1,13 @@
 import Table from "./Table";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default function Lineups({ lineups }) {
-  const headers = ['Formação', 'Partidas']
+  const headers = ["Formação", "Partidas"];
   return (
     <div>
-      <Table array={ lineups } headers={ headers }/>
+      <Table array={lineups} headers={headers} />
     </div>
-  )
+  );
 }
 
 Lineups.propTypes = {

@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
-import PlayersInfo from './PlayersInfo';
-import { useEffect, useState } from 'react';
-import getAPI from '../utils/getAPI';
-import Lineups from './Lineups';
-import Statistics from './Statistics';
-import BarChart from './Chart';
+import PropTypes from "prop-types";
+import PlayersInfo from "./PlayersInfo";
+import { useEffect, useState } from "react";
+import getAPI from "../utils/getAPI";
+import Lineups from "./Lineups";
+import Statistics from "./Statistics";
+import BarChart from "./Chart";
 
 // import { informationMock, playersMock } from '../pages/mock';
 
@@ -21,48 +21,44 @@ export default function Information({ team, league, season, apiKey }) {
       await getAPI(
         `/players?team=${team}&league=${league}&season=${season}`,
         (data) => setPlayers(data.response),
-        apiKey,
+        apiKey
       );
       await getAPI(
         `/teams/statistics?team=${team}&league=${league}&season=${season}`,
         (data) => setStatistics(data.response),
-        apiKey,
-      )
+        apiKey
+      );
     };
     getInformation();
     // setPlayers(playersMock.response)
     // setStatistics(informationMock)
-    setShowPlayers(false)
-  }, [team])
-  
+    setShowPlayers(false);
+  }, [team]);
+
   return (
     <div>
       <button onClick={() => setShowPlayers((prev) => !prev)}>Jogadores</button>
-      {
-        showPlayers && <PlayersInfo players={ players } />
-      }
+      {showPlayers && <PlayersInfo players={players} />}
       <br />
-      <button onClick={() => setShowFormation((prev) => !prev)}>Formação</button>
-      {
-        showFormation && <Lineups lineups={ statistics.lineups }/>
-      }
+      <button onClick={() => setShowFormation((prev) => !prev)}>
+        Formação
+      </button>
+      {showFormation && <Lineups lineups={statistics.lineups} />}
       <br />
-      <button onClick={() => setShowStatistics((prev) => !prev)}>Estatísticas</button>
-      {
-        showStatistics && <Statistics statistics={ statistics.fixtures }/>
-      }
+      <button onClick={() => setShowStatistics((prev) => !prev)}>
+        Estatísticas
+      </button>
+      {showStatistics && <Statistics statistics={statistics.fixtures} />}
       <br />
       <button onClick={() => setShowGraphic((prev) => !prev)}>Gráfico</button>
-      {
-        showGraphic && (
-          <BarChart
-            goalsFor={ statistics.goals.for.minute }
-            goalsAgainst={ statistics.goals.against.minute }
-          />
-          )
-      }
+      {showGraphic && (
+        <BarChart
+          goalsFor={statistics.goals.for.minute}
+          goalsAgainst={statistics.goals.against.minute}
+        />
+      )}
     </div>
-  )
+  );
 }
 
 Information.propTypes = {
