@@ -6,57 +6,75 @@ import SelectOptions from "../components/SelectOptions";
 import Information from "../components/Information";
 import Header from "../components/Header";
 import "../Css/main.css";
+import { teamsMock } from "./mock";
 
 export default function Main() {
   const history = useHistory();
 
   const [apiKey, setApiKey] = useState("");
   const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("Brazil");
+  const [selectedCountry, setSelectedCountry] = useState("");
   const [seasons, setSeasons] = useState([]);
-  const [selectedSeason, setSelectedSeasons] = useState("2021");
+  const [selectedSeason, setSelectedSeasons] = useState("");
   const [leagues, setLeagues] = useState([]);
   const [selectedLeague, setSelectedLeague] = useState("");
-  const [teams, setTeams] = useState([]);
+  const [teams, setTeams] = useState();
   const [selectedTeam, setSelectedTeam] = useState("");
 
   useEffect(() => {
-    const localStorage = LocalStorage.getItem("apiKey");
-    if (!localStorage) {
+    const storedKey = LocalStorage.getItem("apiKey");
+    if (!storedKey) {
       history.push("/");
     }
-    setApiKey(localStorage);
-  }, []);
-
-  useEffect(() => {
     const getCountries = async () => {
-      await getAPI("/countries", (data) => setCountries(data.response), apiKey);
       await getAPI(
-        `/leagues/seasons`,
-        (data) => setSeasons(data.response),
-        apiKey
+        "/countries",
+        (data) => setCountries(data.response),
+        storedKey
       );
     };
     getCountries();
-  }, [apiKey]);
+    setApiKey(storedKey);
+  }, []);
+
+  // useEffect(() => {
+  //   const getCountries = async () => {
+  //     await getAPI("/countries", (data) => setCountries(data.response), apiKey);
+  //     // await getAPI(
+  //     //   `/leagues/seasons`,
+  //     //   (data) => setSeasons(data.response),
+  //     //   apiKey
+  //     // );
+  //   };
+  //   if (apiKey) getCountries();
+  // }, [apiKey]);
 
   useEffect(() => {
-    const getLeaguesAndSeasons = async () => {
+    const getLeagues = async () => {
       const mainPath = `/leagues?country=${selectedCountry}`;
-      await getAPI(mainPath, (data) => setLeagues(data.response), apiKey);
+      await getAPI(
+        mainPath,
+        (data) => {
+          setSeasons(data.response[0].seasons.map(({ year }) => year));
+          setLeagues(data.response);
+        },
+        apiKey
+      );
     };
-    getLeaguesAndSeasons();
+    if (selectedCountry) getLeagues();
   }, [selectedCountry]);
 
   useEffect(() => {
     const getTeams = async () => {
       await getAPI(
         `/teams?league=${selectedLeague}&season=${selectedSeason}`,
-        (data) => setTeams(data.response),
+        (data) => {
+          setTeams(data.response);
+        },
         apiKey
       );
     };
-    getTeams();
+    if (selectedLeague) getTeams();
   }, [selectedLeague]);
 
   return (
