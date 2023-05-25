@@ -1,4 +1,4 @@
-const HOST = "v3.football.api-sports.io";
+const HOST = 'v3.football.api-sports.io';
 
 export default async function fetchAPI(path, callback, options) {
   try {

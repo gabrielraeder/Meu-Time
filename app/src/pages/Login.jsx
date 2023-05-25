@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import getAPI from "../utils/getAPI";
-import LocalStorage from "../utils/localStorage";
-import { useHistory } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import getAPI from '../utils/getAPI';
+import LocalStorage from '../utils/localStorage';
+import { useHistory } from 'react-router-dom';
 
 export default function Login() {
-  const [apiKey, setApiKey] = useState("");
+  const [apiKey, setApiKey] = useState('');
   const [loginError, setLoginError] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
-    if (LocalStorage.getItem("apiKey")) {
-      history.push("/main");
+    if (LocalStorage.getItem('apiKey')) {
+      history.push('/main');
     }
   }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await getAPI("status", handleFetchResult, apiKey);
+    await getAPI('status', handleFetchResult, apiKey);
   };
 
   const handleFetchResult = (apiResult) => {
@@ -25,20 +25,16 @@ export default function Login() {
       return console.log(apiResult.errors.token);
     }
     setLoginError(false);
-    LocalStorage.setLocalStorage("apiReturn", apiResult);
-    LocalStorage.setLocalStorage("apiKey", apiKey);
-    history.push("/main");
+    LocalStorage.setLocalStorage('apiReturn', apiResult);
+    LocalStorage.setLocalStorage('apiKey', apiKey);
+    history.push('/main');
   };
 
   return (
     <form className="login_form" onSubmit={(e) => handleSubmit(e)}>
       <h1>Football Teams</h1>
       <div>
-        <input
-          type="text"
-          value={apiKey}
-          onChange={({ target: { value } }) => setApiKey(value)}
-        />
+        <input type="text" value={apiKey} onChange={({ target: { value } }) => setApiKey(value)} />
         <button type="submit" disabled={apiKey.length !== 32}>
           Submit
         </button>

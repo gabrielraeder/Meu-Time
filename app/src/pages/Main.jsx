@@ -1,35 +1,31 @@
-import { useEffect, useState } from "react";
-import LocalStorage from "../utils/localStorage";
-import { useHistory } from "react-router-dom";
-import getAPI from "../utils/getAPI";
-import SelectOptions from "../components/SelectOptions";
-import Information from "../components/Information";
-import Header from "../components/Header";
+import { useEffect, useState } from 'react';
+import LocalStorage from '../utils/localStorage';
+import { useHistory } from 'react-router-dom';
+import getAPI from '../utils/getAPI';
+import SelectOptions from '../components/SelectOptions';
+import Information from '../components/Information';
+import Header from '../components/Header';
 
 export default function Main() {
   const history = useHistory();
 
-  const [apiKey, setApiKey] = useState("");
+  const [apiKey, setApiKey] = useState('');
   const [countries, setCountries] = useState([]);
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCountry, setSelectedCountry] = useState('');
   const [seasons, setSeasons] = useState([]);
-  const [selectedSeason, setSelectedSeasons] = useState("");
+  const [selectedSeason, setSelectedSeasons] = useState('');
   const [leagues, setLeagues] = useState([]);
-  const [selectedLeague, setSelectedLeague] = useState("");
+  const [selectedLeague, setSelectedLeague] = useState('');
   const [teams, setTeams] = useState([]);
-  const [selectedTeam, setSelectedTeam] = useState("a");
+  const [selectedTeam, setSelectedTeam] = useState('');
 
   useEffect(() => {
-    const storedKey = LocalStorage.getItem("apiKey");
+    const storedKey = LocalStorage.getItem('apiKey');
     if (!storedKey) {
-      history.push("/");
+      history.push('/');
     }
     const getCountries = async () => {
-      await getAPI(
-        "/countries",
-        (data) => setCountries(data.response),
-        storedKey
-      );
+      await getAPI('/countries', (data) => setCountries(data.response), storedKey);
     };
     getCountries();
     setApiKey(storedKey);
@@ -84,7 +80,7 @@ export default function Main() {
         <SelectOptions
           array={leagues.map(({ league }) => ({
             name: league.name,
-            valueToSave: league.id,
+            valueToSave: league.id
           }))}
           handleChange={setSelectedLeague}
           fieldName="leagues"
@@ -94,7 +90,7 @@ export default function Main() {
         <SelectOptions
           array={teams.map(({ team }) => ({
             name: team.name,
-            valueToSave: team.id,
+            valueToSave: team.id
           }))}
           handleChange={setSelectedTeam}
           fieldName="team"

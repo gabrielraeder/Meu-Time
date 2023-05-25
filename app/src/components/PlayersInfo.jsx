@@ -1,12 +1,12 @@
-import Table from "./Table";
-import PropTypes from "prop-types";
+import Table from './Table';
+import PropTypes from 'prop-types';
 
 export default function playersInfo({ players }) {
-  const headers = ["Nome", "Idade", "Nacionalidade"];
+  const headers = ['Nome', 'Idade', 'Nacionalidade'];
   const playersInfo = players.map(({ player: { name, age, nationality } }) => ({
     name,
     age,
-    nationality,
+    nationality
   }));
   return (
     <div>
@@ -16,5 +16,5 @@ export default function playersInfo({ players }) {
 }
 
 playersInfo.propTypes = {
-  players: PropTypes.array.isRequired,
+  players: PropTypes.array.isRequired
 };

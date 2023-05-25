@@ -1,8 +1,8 @@
-import Table from "./Table";
-import PropTypes from "prop-types";
+import Table from './Table';
+import PropTypes from 'prop-types';
 
 export default function Lineups({ lineups }) {
-  const headers = ["Formação", "Partidas"];
+  const headers = ['Formação', 'Partidas'];
   return (
     <div>
       <Table array={lineups} headers={headers} />
@@ -11,5 +11,5 @@ export default function Lineups({ lineups }) {
 }
 
 Lineups.propTypes = {
-  lineups: PropTypes.array.isRequired,
+  lineups: PropTypes.array.isRequired
 };

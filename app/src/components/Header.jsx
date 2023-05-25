@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import LocalStorage from "../utils/localStorage";
-import { useHistory } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import LocalStorage from '../utils/localStorage';
+import { useHistory } from 'react-router-dom';
 
 export default function Header() {
   const history = useHistory();
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState('');
 
   useEffect(() => {
     const {
-      response: { account },
-    } = LocalStorage.getItem("apiReturn");
+      response: { account }
+    } = LocalStorage.getItem('apiReturn');
     setUser(`${account.firstname} ${account.lastname}`);
   }, []);
 
   const logout = () => {
-    localStorage.removeItem("apiReturn");
-    localStorage.removeItem("apiKey");
-    history.push("/");
+    localStorage.removeItem('apiReturn');
+    localStorage.removeItem('apiKey');
+    history.push('/');
   };
 
   return (

@@ -1,16 +1,16 @@
-import Table from "./Table";
-import PropTypes from "prop-types";
+import Table from './Table';
+import PropTypes from 'prop-types';
 
 export default function Statistics({ statistics }) {
-  const headers = ["Partidas", "Vitórias", "Empates", "Derrotas"];
+  const headers = ['Partidas', 'Vitórias', 'Empates', 'Derrotas'];
   const { draws, loses, wins, played } = statistics;
   const data = [
     {
       played: played.total,
       wins: wins.total,
       draws: draws.total,
-      losses: loses.total,
-    },
+      losses: loses.total
+    }
   ];
   return (
     <div>
@@ -22,16 +22,16 @@ export default function Statistics({ statistics }) {
 Statistics.propTypes = {
   statistics: PropTypes.shape({
     played: PropTypes.shape({
-      total: PropTypes.number,
+      total: PropTypes.number
     }),
     wins: PropTypes.shape({
-      total: PropTypes.number,
+      total: PropTypes.number
     }),
     draws: PropTypes.shape({
-      total: PropTypes.number,
+      total: PropTypes.number
     }),
     loses: PropTypes.shape({
-      total: PropTypes.number,
-    }),
-  }).isRequired,
+      total: PropTypes.number
+    })
+  }).isRequired
 };

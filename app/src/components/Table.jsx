@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 export default function Table({ array, headers }) {
   return (
@@ -25,5 +25,5 @@ export default function Table({ array, headers }) {
 
 Table.propTypes = {
   array: PropTypes.array.isRequired,
-  headers: PropTypes.array.isRequired,
+  headers: PropTypes.array.isRequired
 };
