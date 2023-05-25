@@ -2,8 +2,7 @@ import { useState } from "react";
 import getAPI from "../utils/getAPI";
 import LocalStorage from "../utils/localStorage";
 import { useHistory } from "react-router-dom";
-// 854a097a84bf6ba19ab5996a760c58f3
-// a4e214a8a2e0bc85a3db6dfd5aae1372
+
 export default function Login() {
   const [apiKey, setApiKey] = useState("");
   const [loginError, setLoginError] = useState(false);
