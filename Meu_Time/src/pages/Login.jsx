@@ -32,15 +32,18 @@ export default function Login() {
 
   return (
     <form className="login_form" onSubmit={(e) => handleSubmit(e)}>
-      <input
-        type="text"
-        value={apiKey}
-        onChange={({ target: { value } }) => setApiKey(value)}
-      />
-      <button type="submit" disabled={apiKey.length !== 32}>
-        Submit
-      </button>
-      {loginError && <p>API KEY inválida</p>}
+      <h1>Football Teams</h1>
+      <div>
+        <input
+          type="text"
+          value={apiKey}
+          onChange={({ target: { value } }) => setApiKey(value)}
+        />
+        <button type="submit" disabled={apiKey.length !== 32}>
+          Submit
+        </button>
+        {loginError && <p>API KEY inválida</p>}
+      </div>
     </form>
   );
 }
