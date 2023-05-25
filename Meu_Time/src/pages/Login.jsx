@@ -31,7 +31,9 @@ export default function Login() {
         value={apiKey}
         onChange={({ target: { value } }) => setApiKey(value)}
       />
-      <button type="submit">Submit</button>
+      <button type="submit" disabled={apiKey.length !== 32}>
+        Submit
+      </button>
       {loginError && <p>API KEY inválida</p>}
     </form>
   );
