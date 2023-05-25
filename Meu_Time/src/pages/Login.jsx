@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import getAPI from "../utils/getAPI";
 import LocalStorage from "../utils/localStorage";
 import { useHistory } from "react-router-dom";
@@ -7,6 +7,12 @@ export default function Login() {
   const [apiKey, setApiKey] = useState("");
   const [loginError, setLoginError] = useState(false);
   const history = useHistory();
+
+  useEffect(() => {
+    if (LocalStorage.getItem("apiKey")) {
+      history.push("/main");
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -4,11 +4,14 @@ import renderPath from "./utils/renderWithRouter";
 import userEvent from "@testing-library/user-event";
 
 import { invalidKey, validKey, apiKeyMock } from "../tests/mocks/login.mocks";
+import { countriesMock } from "./mocks/main.mocks";
 
 describe("Testa a tela de Login", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     localStorage.clear();
+    jest.spyOn(console, "error");
+    console.error.mockImplementation(() => null);
   });
 
   it("Verifica se possui um formulario de login", () => {
@@ -56,7 +59,10 @@ describe("Testa a tela de Login", () => {
   it("Faz login com uma APIKEY válida e redireciona para a pagina /main", async () => {
     jest.spyOn(global, "fetch");
     global.fetch.mockResolvedValue({
-      json: jest.fn().mockResolvedValue(validKey),
+      json: jest
+        .fn()
+        .mockResolvedValue(countriesMock)
+        .mockResolvedValueOnce(validKey),
     });
     const { history } = renderPath("/");
 

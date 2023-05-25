@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import PlayersInfo from "./PlayersInfo";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import getAPI from "../utils/getAPI";
 import Lineups from "./Lineups";
 import Statistics from "./Statistics";
 import BarChart from "./Chart";
 
-// import { informationMock, playersMock } from '../pages/mock';
+// import { informationMock, playersMock } from "../pages/mock";
 
 export default function Information({ team, league, season, apiKey }) {
   const [showPlayers, setShowPlayers] = useState(false);
@@ -16,41 +16,80 @@ export default function Information({ team, league, season, apiKey }) {
   const [players, setPlayers] = useState([]);
   const [statistics, setStatistics] = useState({});
 
-  useEffect(() => {
-    const getInformation = async () => {
+  const getPlayers = async () => {
+    if (players.length === 0) {
       await getAPI(
         `/players?team=${team}&league=${league}&season=${season}`,
-        (data) => setPlayers(data.response),
+        (data) => {
+          setPlayers(data.response);
+        },
         apiKey
       );
+    }
+    setShowPlayers((prev) => !prev);
+  };
+
+  const getInformation = async (callback) => {
+    if (players.length === 0) {
       await getAPI(
         `/teams/statistics?team=${team}&league=${league}&season=${season}`,
-        (data) => setStatistics(data.response),
+        (data) => {
+          setStatistics(data.response);
+        },
         apiKey
       );
-    };
-    getInformation();
-    // setPlayers(playersMock.response)
-    // setStatistics(informationMock)
-    setShowPlayers(false);
-  }, [team]);
+    }
+    callback((prev) => !prev);
+  };
+
+  // useEffect(() => {
+  //   const getInformation = async () => {
+  //     await getAPI(
+  //       `/players?team=${team}&league=${league}&season=${season}`,
+  //       (data) => {
+  //         console.log(data);
+  //         setPlayers(data.response);
+  //       },
+  //       apiKey
+  //     );
+  // await getAPI(
+  //   `/teams/statistics?team=${team}&league=${league}&season=${season}`,
+  //   (data) => setStatistics(data.response),
+  //   apiKey
+  // );
+  //   };
+  //   if (team) getInformation();
+  //   // setPlayers(playersMock.response)
+  //   // setStatistics(informationMock)
+  //   setShowPlayers(false);
+  // }, [team]);
 
   return (
     <div>
-      <button onClick={() => setShowPlayers((prev) => !prev)}>Jogadores</button>
+      <button id="playersBtn" onClick={getPlayers}>
+        Jogadores
+      </button>
       {showPlayers && <PlayersInfo players={players} />}
       <br />
-      <button onClick={() => setShowFormation((prev) => !prev)}>
+      <button
+        id="formationBtn"
+        onClick={() => getInformation(setShowFormation)}
+      >
         Formação
       </button>
       {showFormation && <Lineups lineups={statistics.lineups} />}
       <br />
-      <button onClick={() => setShowStatistics((prev) => !prev)}>
+      <button
+        id="statsButton"
+        onClick={() => getInformation(setShowStatistics)}
+      >
         Estatísticas
       </button>
       {showStatistics && <Statistics statistics={statistics.fixtures} />}
       <br />
-      <button onClick={() => setShowGraphic((prev) => !prev)}>Gráfico</button>
+      <button id="graficBtn" onClick={() => getInformation(setShowGraphic)}>
+        Gráfico
+      </button>
       {showGraphic && (
         <BarChart
           goalsFor={statistics.goals.for.minute}
