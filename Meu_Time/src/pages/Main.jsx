@@ -30,121 +30,60 @@ export default function Main() {
   useEffect(() => {
     const getCountries = async () => {
       await getAPI('/countries', (data) => setCountries(data.response), apiKey);
+      await getAPI(`/leagues/seasons`, (data) => setSeasons(data.response), apiKey);
     };
     getCountries();
   }, [apiKey]);
-
-  const handleCountryChange = async (value) => {
-    setSelectedCountry(value);
-    const mainPath = `/leagues?country=${selectedCountry}`;
+  
+  useEffect(() => {
+    const getLeaguesAndSeasons = async () => {
+      const mainPath = `/leagues?country=${selectedCountry}`;
     await getAPI(mainPath, (data) => setLeagues(data.response), apiKey);
-    await getAPI(`/leagues/seasons`, (data) => setSeasons(data.response), apiKey);
-  };
+    }
+    getLeaguesAndSeasons();
+  }, [selectedCountry])
+  
+  useEffect(() => {
+    const getTeams = async () => {
+      await getAPI(`/teams?league=${selectedLeague}&season=${selectedSeason}`, (data) => setTeams(data.response), apiKey);
+    };
+    getTeams()
+  }, [selectedLeague])
+  
 
-  const handleSeasonChange = async (value) => {
-    setSelectedSeasons(value);
-  };
-
-  const handleLeagueChange = async (value) => {
-    setSelectedLeague(value);
-    await getAPI(`/teams?league=${selectedLeague}&season=${selectedSeason}`, (data) => setTeams(data.response), apiKey);
-  };
-
-  const handleTeamChange = async (value) => {
-    setSelectedTeam(value);
-  };
-
-  // useEffect(() => {
-  //   console.log(selectedTeam);
-  // }, [teams]);
 
   return (
     <>
       <form>
         <SelectOptions
           array={ countries.map((c) => ({ name: c.name, valueToSave: c.name })) }
-          handleChange={handleCountryChange}
+          handleChange={setSelectedCountry}
           fieldName="country"
           text="Países:"
         />
-        {/* <label htmlFor="countries">
-          Países: 
-          <select
-            name="country"
-            id="countries"
-            onChange={ ({ target: { value } }) => handleCountryChange(value) }
-          >
-            {
-              countries.map(({ name }) => (
-                <option key={ name } value={ name }>{ name }</option>
-              ))
-            }
-          </select>
-        </label> */}
         
         <SelectOptions
           array={ seasons.map((s) => ({ name: s, valueToSave: s })) }
-          handleChange={handleSeasonChange}
+          handleChange={setSelectedSeasons}
           fieldName="seasons"
           text="Temporadas:"
         />
-        {/* <label htmlFor="seasons">
-          Temporadas: 
-          <select
-            name="season"
-            id="seasons"
-            onChange={ ({ target: { value } }) => handleSeasonChange(value) }
-          >
-            {
-              seasons?.map((season) => (
-                <option key={ season } value={ season }>{ season }</option>
-              ))
-            }
-          </select>
-        </label> */}
 
         <SelectOptions
-          array={ leagues.map((l) => ({ name: l.name, valueToSave: l.id })) }
-          handleChange={handleLeagueChange}
+          array={ leagues.map(({ league }) => ({ name: league.name, valueToSave: league.id })) }
+          handleChange={setSelectedLeague}
           fieldName="leagues"
           text="Ligas:"
         />
-        {/* <label htmlFor="leagues">
-          Ligas: 
-          <select
-            name="league"
-            id="leagues"
-            onChange={ ({ target: { value } }) => handleLeagueChange(value) }
-          >
-            {
-              leagues?.map(({ league }) => (
-                <option key={ league.id } value={ league.id }>{ league.name }</option>
-              ))
-            }
-          </select>
-        </label> */}
 
         <SelectOptions
           array={ teams.map(({ team }) => ({ name: team.name, valueToSave: team.id })) }
-          handleChange={handleTeamChange}
+          handleChange={setSelectedTeam}
           fieldName="team"
           text="Times:"
         />
-        {/* <label htmlFor="teams">
-          Times: 
-          <select
-            name="teams"
-            id="team"
-            onChange={ ({ target: { value } }) => handleTeamChange(value) }
-          >
-            {
-              teams?.map(({ team }) => (
-                <option key={ team.id } value={ team.id }>{ team.name }</option>
-              ))
-            }
-          </select>
-        </label> */}
       </form>
+      
       { 
         selectedTeam && (
           <Information

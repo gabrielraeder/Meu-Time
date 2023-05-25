@@ -1,22 +1,34 @@
 import PropTypes from 'prop-types';
-import PlayersInfo from './playersInfo';
+import PlayersInfo from './PlayersInfo';
 import { useEffect, useState } from 'react';
 import getAPI from '../utils/getAPI';
 
 export default function Information({ team, league, season, apiKey }) {
   const [showPlayers, setShowPlayers] = useState(false);
   const [players, setPlayers] = useState([]);
+  const [statistics, setStatistics] = useState({});
 
   useEffect(() => {
-    const getPlayers = async () => {
+    const getInformation = async () => {
       await getAPI(
         `/players?team=${team}&league=${league}&season=${season}`,
         (data) => setPlayers(data.response),
         apiKey,
       );
+      await getAPI(
+        `/teams/statistics?team=${team}&league=${league}&season=${season}`,
+        (data) => setStatistics(data.response),
+        apiKey,
+      )
     };
-    getPlayers();
-  }, [])
+    getInformation();
+    setShowPlayers(false)
+  }, [team])
+
+  useEffect(() => {
+    console.log(statistics);
+  }, [statistics])
+  
   
   return (
     <div>
