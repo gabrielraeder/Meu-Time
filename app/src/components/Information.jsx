@@ -51,10 +51,6 @@ export default function Information({ team, league, season, apiKey, loading, set
     if (loading) setLoading(false);
   };
 
-  const cancelRequest = () => {
-    setLoading(false);
-  };
-
   return (
     <div className="information_section">
       <button id="playersBtn" onClick={getPlayers}>
@@ -80,18 +76,6 @@ export default function Information({ team, league, season, apiKey, loading, set
           goalsFor={statistics?.goals?.for?.minute}
           goalsAgainst={statistics?.goals?.against?.minute}
         />
-      )}
-      {loading && (
-        <div>
-          <div id="loading-screen">
-            <div className="loader">LOADING...</div>
-          </div>
-          <div className="cancel_div" onClick={cancelRequest}>
-            <button className="cancel_btn" onClick={cancelRequest}>
-              Cancel
-            </button>
-          </div>
-        </div>
       )}
     </div>
   );

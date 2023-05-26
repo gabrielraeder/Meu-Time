@@ -5,6 +5,7 @@ import getAPI from '../utils/getAPI';
 import SelectOptions from '../components/SelectOptions';
 import Information from '../components/Information';
 import Header from '../components/Header';
+import Loading from '../components/Loading';
 
 export default function Main() {
   const history = useHistory();
@@ -72,6 +73,10 @@ export default function Main() {
     if (selectedLeague) getTeams();
   }, [selectedLeague]);
 
+  const cancelRequest = () => {
+    setLoading(false);
+  };
+
   return (
     <main>
       <div className="MainDiv">
@@ -122,6 +127,7 @@ export default function Main() {
           />
         )}
       </div>
+      {loading && <Loading cancelRequest={cancelRequest} />}
     </main>
   );
 }

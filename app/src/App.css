@@ -163,13 +163,12 @@ table .highlight {
 }
 
 .loader {
-  margin: 0 45%;
   border: 4px solid #368d1e;
   background-color: #145614;
   border-top: 4px solid #56c05694;
-  border-radius: 100%;
-  width: 30px;
-  height: 30px;
+  border-radius: 20%;
+  width: 350px;
+  height: 25px;
   animation: spin 1.6s forwards infinite;
 }
 
