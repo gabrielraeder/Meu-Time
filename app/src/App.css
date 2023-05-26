@@ -122,6 +122,7 @@ table .highlight {
 .login_div button {
   border-radius: 0;
   color: white;
+  background-color: rgb(12, 12, 12);
 }
 
 .login_form div a {
