@@ -1,8 +1,8 @@
 // import React from 'react';
-import { Route, Switch } from "react-router-dom";
-import "./App.css";
-import Login from "./pages/Login";
-import Main from "./pages/Main";
+import { Route, Switch } from 'react-router-dom';
+import './App.css';
+import Login from './pages/Login';
+import Main from './pages/Main';
 
 function App() {
   return (
