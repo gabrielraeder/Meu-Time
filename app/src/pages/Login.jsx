@@ -14,6 +14,10 @@ export default function Login() {
     }
   }, []);
 
+  useEffect(() => {
+    setLoginError(false);
+  }, [apiKey]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     await getAPI('status', handleFetchResult, apiKey);
@@ -33,16 +37,14 @@ export default function Login() {
   return (
     <form className="login_form" onSubmit={(e) => handleSubmit(e)}>
       <h1>Football Teams</h1>
-      <div>
+      <div className="login_div">
         <input type="text" value={apiKey} onChange={({ target: { value } }) => setApiKey(value)} />
-        <button type="submit" disabled={apiKey.length !== 32}>
-          Submit
-        </button>
-        {loginError && <p>API KEY inválida</p>}
+        <button type="submit">Submit</button>
         <a href="https://dashboard.api-football.com/register" target="_blank" rel="noreferrer">
           Register
         </a>
       </div>
+      {loginError && <p>API KEY inválida</p>}
     </form>
   );
 }
