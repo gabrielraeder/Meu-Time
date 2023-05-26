@@ -67,7 +67,9 @@ table {
 
 table th {
   background-color: #161616;
+  color: white;
 }
+
 table th, table td {
   padding: 8px;
   text-align: left;
@@ -163,6 +165,7 @@ table .highlight {
 }
 
 .loader {
+  color: white;
   border: 4px solid #368d1e;
   background-color: #145614;
   border-top: 4px solid #56c05694;
