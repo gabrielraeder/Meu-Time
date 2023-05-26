@@ -93,14 +93,14 @@ export default function Main() {
             array={countries.map((c) => ({ name: c.name, valueToSave: c.name }))}
             handleChange={setSelectedCountry}
             fieldName="country"
-            text="COUNTRIES 🡺 "
+            text="COUNTRIES ➜ "
           />
 
           <SelectOptions
             array={seasons.map((s) => ({ name: s, valueToSave: s }))}
             handleChange={setSelectedSeasons}
             fieldName="seasons"
-            text="SEASONS 🡺 "
+            text="SEASONS ➜ "
           />
 
           <SelectOptions
@@ -110,7 +110,7 @@ export default function Main() {
             }))}
             handleChange={setSelectedLeague}
             fieldName="leagues"
-            text="LEAGUES 🡺 "
+            text="LEAGUES ➜ "
           />
 
           <SelectOptions
@@ -120,7 +120,7 @@ export default function Main() {
             }))}
             handleChange={setSelectedTeam}
             fieldName="team"
-            text="TEAMS 🡺 "
+            text="TEAMS ➜ "
           />
         </form>
         {selectedTeam && (
