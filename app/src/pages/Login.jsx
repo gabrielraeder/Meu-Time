@@ -39,6 +39,9 @@ export default function Login() {
           Submit
         </button>
         {loginError && <p>API KEY inválida</p>}
+        <a href="https://dashboard.api-football.com/register" target="_blank" rel="noreferrer">
+          Register
+        </a>
       </div>
     </form>
   );

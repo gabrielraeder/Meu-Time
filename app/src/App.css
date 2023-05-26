@@ -102,3 +102,19 @@ table .highlight {
   display: flex;
   flex-direction: column;
 }
+
+.login_form div a {
+  color: rgb(143, 142, 142);
+  text-decoration: none;
+  margin-top: 1px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: rgb(119, 72, 72);
+}
+
+.login_form div a:hover {
+  color: rgb(0, 188, 0);
+  background-color: rgb(100, 62, 62);
+  border: rgb(144, 0, 0) 1px solid;
+}
+
