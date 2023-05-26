@@ -1,5 +1,7 @@
 # Meu-Time
 
+### You can see the application running on Vercel [here](https://meu-time-alpha.vercel.app/).
+
 ## Build with:
   - Javascript
   - React
@@ -16,7 +18,7 @@
 ```sh
 docker-compose up -d
 ```
- - the application will be already running on port 5173
+ - the application will be already running on port [5173](http://localhost:5173)
 #### Test with:
 ```sh
 docker exec -it meu-time-frontend-1 sh
