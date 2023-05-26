@@ -77,7 +77,8 @@ export default function Main() {
   useEffect(() => {
     setRestart(true);
     setSelectedTeam('');
-  }, [selectedCountry, selectedLeague, selectedSeason, selectedTeam]);
+    setTeams([]);
+  }, [selectedCountry, selectedLeague, selectedSeason]);
 
   const cancelRequest = () => {
     setLoading(false);
