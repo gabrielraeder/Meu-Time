@@ -19,7 +19,7 @@ export default function Main() {
   const [leagues, setLeagues] = useState([]);
   const [selectedLeague, setSelectedLeague] = useState('');
   const [teams, setTeams] = useState([]);
-  const [selectedTeam, setSelectedTeam] = useState('a');
+  const [selectedTeam, setSelectedTeam] = useState('');
 
   useEffect(() => {
     const storedKey = LocalStorage.getItem('apiKey');
