@@ -30,6 +30,7 @@ export default function Information({ team, league, season, apiKey, loading, set
         apiKey
       );
     }
+    if (showPlayers) setShowPlayers((prev) => !prev);
     if (loading) setLoading(false);
   };
 
@@ -48,6 +49,7 @@ export default function Information({ team, league, season, apiKey, loading, set
         apiKey
       );
     }
+    if (show) callback((prev) => !prev);
     if (loading) setLoading(false);
   };
 
