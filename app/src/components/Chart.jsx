@@ -46,8 +46,8 @@ export default function BarChart({ goalsFor, goalsAgainst }) {
     ]
   };
   return (
-    <div className="Chart_div">
-      <Bar options={options} data={data} />
+    <div>
+      <Bar className="Chart_div" options={options} data={data} width={400} height={100} />
     </div>
   );
 }

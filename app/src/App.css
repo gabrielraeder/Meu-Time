@@ -121,8 +121,5 @@ table .highlight {
 }
 
 .Chart_div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+  max-width: 80%;
 }
