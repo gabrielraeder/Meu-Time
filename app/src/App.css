@@ -87,7 +87,7 @@ table .highlight {
 }
 
 .login_form {
-  height: 25%;
+  height: 350px;
   width: 35%;
   display: flex;
   flex-direction: column;
