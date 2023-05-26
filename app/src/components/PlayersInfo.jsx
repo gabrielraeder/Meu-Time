@@ -2,7 +2,7 @@ import Table from './Table';
 import PropTypes from 'prop-types';
 
 export default function playersInfo({ players }) {
-  const headers = ['Nome', 'Idade', 'Nacionalidade'];
+  const headers = ['Name', 'Age', 'Nationality'];
   const playersInfo = players.map(({ player: { name, age, nationality } }) => ({
     name,
     age,

@@ -30,14 +30,14 @@ export default function BarChart({ goalsFor, goalsAgainst }) {
     labels,
     datasets: [
       {
-        label: 'Gols a favor',
+        label: 'Goals for',
         data: Object.values(goalsFor).map(({ total }) => total),
         backgroundColor: 'rgb(124,252,0)',
         borderColor: 'green',
         borderWidth: 1
       },
       {
-        label: 'Gols contra',
+        label: 'Goals against',
         data: Object.values(goalsAgainst).map(({ total }) => total),
         backgroundColor: 'rgba(255, 99, 132, 0.5)',
         borderColor: 'red',
@@ -45,7 +45,11 @@ export default function BarChart({ goalsFor, goalsAgainst }) {
       }
     ]
   };
-  return <Bar options={options} data={data} />;
+  return (
+    <div className="Chart_div">
+      <Bar options={options} data={data} />
+    </div>
+  );
 }
 
 BarChart.propTypes = {

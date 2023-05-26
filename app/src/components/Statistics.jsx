@@ -2,7 +2,7 @@ import Table from './Table';
 import PropTypes from 'prop-types';
 
 export default function Statistics({ statistics }) {
-  const headers = ['Partidas', 'Vitórias', 'Empates', 'Derrotas'];
+  const headers = ['Matches', 'Wins', 'Draws', 'Losses'];
   const { draws, loses, wins, played } = statistics;
   const data = [
     {

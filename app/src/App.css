@@ -120,3 +120,9 @@ table .highlight {
   border: rgb(144, 0, 0) 1px solid;
 }
 
+.Chart_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}

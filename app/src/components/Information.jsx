@@ -58,8 +58,8 @@ export default function Information({ team, league, season, apiKey }) {
       </button>
       {showGraphic && (
         <BarChart
-          goalsFor={statistics.goals.for.minute}
-          goalsAgainst={statistics.goals.against.minute}
+          goalsFor={statistics?.goals?.for?.minute}
+          goalsAgainst={statistics?.goals?.against?.minute}
         />
       )}
     </div>
