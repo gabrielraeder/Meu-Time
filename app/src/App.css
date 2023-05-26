@@ -201,3 +201,22 @@ table .highlight {
     transform: rotate(360deg);
   }
 }
+
+.custom_select {
+  color: black;
+  width: 170px;
+  padding: 5px;
+  font-size: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.custom_select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

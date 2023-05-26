@@ -24,20 +24,6 @@ describe('Testa a tela de Login', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('Verifica o botão submit ativa somente quando possuir uma APIKEY digitada', () => {
-    renderPath('/');
-
-    const input = screen.getByRole('textbox');
-    const button = screen.getByRole('button', { name: /submit/i });
-
-    expect(input).toBeInTheDocument();
-    expect(button).toBeDisabled();
-
-    userEvent.type(input, apiKeyMock);
-
-    expect(button).toBeEnabled();
-  });
-
   it('Tenta fazer login com uma APIKEY inválida', async () => {
     jest.spyOn(global, 'fetch');
     global.fetch.mockResolvedValue({

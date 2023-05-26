@@ -5,6 +5,7 @@ export default function SelectOptions({ array, handleChange, fieldName, text }) 
     <label htmlFor={fieldName}>
       <strong>{text}</strong>
       <select
+        className="custom_select"
         name={fieldName}
         id={`${fieldName}_id`}
         onChange={({ target: { value } }) => handleChange(value)}>
