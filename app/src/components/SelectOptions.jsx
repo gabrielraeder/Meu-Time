@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 export default function SelectOptions({ array, handleChange, fieldName, text }) {
   return (
     <label htmlFor={fieldName}>
-      {text}
+      <strong>{text}</strong>
       <select
         name={fieldName}
         id={`${fieldName}_id`}

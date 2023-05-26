@@ -36,47 +36,25 @@ export default function Information({ team, league, season, apiKey }) {
     callback((prev) => !prev);
   };
 
-  // useEffect(() => {
-  //   const getInformation = async () => {
-  //     await getAPI(
-  //       `/players?team=${team}&league=${league}&season=${season}`,
-  //       (data) => {
-  //         console.log(data);
-  //         setPlayers(data.response);
-  //       },
-  //       apiKey
-  //     );
-  // await getAPI(
-  //   `/teams/statistics?team=${team}&league=${league}&season=${season}`,
-  //   (data) => setStatistics(data.response),
-  //   apiKey
-  // );
-  //   };
-  //   if (team) getInformation();
-  //   // setPlayers(playersMock.response)
-  //   // setStatistics(informationMock)
-  //   setShowPlayers(false);
-  // }, [team]);
-
   return (
     <div className="information_section">
       <button id="playersBtn" onClick={getPlayers}>
-        Jogadores
+        Players
       </button>
       {showPlayers && <PlayersInfo players={players} />}
       <br />
       <button id="formationBtn" onClick={() => getInformation(setShowFormation)}>
-        Formação
+        Formations
       </button>
       {showFormation && <Lineups lineups={statistics.lineups} />}
       <br />
       <button id="statsButton" onClick={() => getInformation(setShowStatistics)}>
-        Estatísticas
+        Statistics
       </button>
       {showStatistics && <Statistics statistics={statistics.fixtures} />}
       <br />
       <button id="graficBtn" onClick={() => getInformation(setShowGraphic)}>
-        Gráfico
+        Goals Chart
       </button>
       {showGraphic && (
         <BarChart

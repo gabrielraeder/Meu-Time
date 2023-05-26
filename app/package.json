@@ -7,7 +7,7 @@
     "start": "vite",
     "start:build": "PORT=3000 ./node_modules/.bin/serve -s build",
     "dev": "vite",
-    "build": "vite build && react-scripts build",
+    "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "lint:fix": "eslint --fix",
