@@ -1,19 +1,35 @@
 import PropTypes from 'prop-types';
 import PlayersInfo from './PlayersInfo';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import getAPI from '../utils/getAPI';
 import Lineups from './Lineups';
 import Statistics from './Statistics';
 import BarChart from './Chart';
 
-export default function Information({ team, league, season, apiKey, loading, setLoading }) {
+export default function Information({
+  team,
+  league,
+  season,
+  apiKey,
+  loading,
+  setLoading,
+  restart
+}) {
   const [showPlayers, setShowPlayers] = useState(false);
   const [showFormation, setShowFormation] = useState(false);
   const [showStatistics, setShowStatistics] = useState(false);
   const [showGraphic, setShowGraphic] = useState(false);
   const [players, setPlayers] = useState([]);
   const [statistics, setStatistics] = useState({});
-  // const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (restart) {
+      setShowPlayers(false);
+      setShowFormation(false);
+      setShowStatistics(false);
+      setShowGraphic(false);
+    }
+  }, [restart]);
 
   const getPlayers = async () => {
     if (!showPlayers) {
@@ -89,5 +105,6 @@ Information.propTypes = {
   season: PropTypes.string.isRequired,
   apiKey: PropTypes.string.isRequired,
   loading: PropTypes.bool.isRequired,
+  restart: PropTypes.bool.isRequired,
   setLoading: PropTypes.func.isRequired
 };

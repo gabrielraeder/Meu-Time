@@ -21,6 +21,7 @@ export default function Main() {
   const [selectedLeague, setSelectedLeague] = useState('');
   const [teams, setTeams] = useState([]);
   const [selectedTeam, setSelectedTeam] = useState('');
+  const [restart, setRestart] = useState(false);
 
   useEffect(() => {
     const storedKey = LocalStorage.getItem('apiKey');
@@ -73,6 +74,11 @@ export default function Main() {
     if (selectedLeague) getTeams();
   }, [selectedLeague]);
 
+  useEffect(() => {
+    setRestart(true);
+    setSelectedTeam('');
+  }, [selectedCountry, selectedLeague, selectedSeason, selectedTeam]);
+
   const cancelRequest = () => {
     setLoading(false);
   };
@@ -118,6 +124,7 @@ export default function Main() {
         </form>
         {selectedTeam && (
           <Information
+            restart={restart}
             team={selectedTeam}
             league={selectedLeague}
             season={selectedSeason}

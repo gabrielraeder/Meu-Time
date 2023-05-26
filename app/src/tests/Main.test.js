@@ -85,7 +85,7 @@ describe('Testa a tela de Main', () => {
 
     await waitFor(() => expect(global.fetch).toHaveBeenCalledTimes(4));
 
-    const playersBtn = screen.getByText('Jogadores');
+    const playersBtn = screen.getByText('Players');
     expect(playersBtn).toBeInTheDocument();
 
     userEvent.click(playersBtn);
@@ -98,7 +98,7 @@ describe('Testa a tela de Main', () => {
     userEvent.click(playersBtn);
     expect(playersRows[0]).not.toBeInTheDocument();
 
-    const formationBtn = screen.getByText('Formação');
+    const formationBtn = screen.getByText('Formations');
     expect(formationBtn).toBeInTheDocument();
   });
 });
